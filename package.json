@@ -1,0 +1,25 @@
+{
+  "name"          : "backbone-decorator",
+  "description"   : "Give your JS Backbone Views a Decorator.",
+  "keywords"      : ["decorator", "backbone"],
+  "author"        : "Angelo Michel",
+  "dependencies"  : {
+    "backbone"  : ">=1.1.2"
+  },
+  "devDependencies": {
+    "phantomjs": "1.9.7-8",
+    "docco": "0.6.3"
+  },
+  "scripts": {
+    "test": "phantomjs test/vendor/runner.js test/index.html?noglobals=true",
+    "build": "uglifyjs backbone-decorator.js --mangle --source-map backbone-decorator-min.map -o backbone-decorator-min.js",
+    "doc": "docco backbone-decorator.js"
+  },
+  "main"          : "backbone-decorator",
+  "version"       : "0.0.1",
+  "license"       : "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angelomichel/backbone-decorator.git"
+  }
+}
