@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Backbone.Decorator by angelomichel</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Backbone.Decorator</h1>
+        <p></p>
+
+        <p class="view"><a href="https://github.com/angelomichel/backbone-decorator">View the Project on GitHub <small>angelomichel/backbone-decorator</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/angelomichel/backbone-decorator/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/angelomichel/backbone-decorator/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/angelomichel/backbone-decorator">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="backbone-decorator" class="anchor" href="#backbone-decorator"><span class="octicon octicon-link"></span></a>Backbone Decorator</h1>
+
+<p>If you have lot's of data in your templates that needs formatting or
+just a seperate way of displaying your model in one View or another.</p>
+
+<p>Decorators are very usefull if you have a <code>events</code>-rich View, which
+ussually have quite some template data aswell. The Decorator is here to keep
+your Views focussed on the events and all supporting functions around the
+those events.</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-javascript"><pre>
+    <span class="nx">App</span><span class="p">.</span><span class="nx">ProductsView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+      <span class="c1">// decorator is assigned here</span>
+      <span class="nx">decorator</span><span class="o">:</span> <span class="nx">App</span><span class="p">.</span><span class="nx">ProductsDecorator</span><span class="p">,</span>
+
+      <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listenTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">,</span> <span class="s1">'...'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">someFunc</span><span class="p">);</span>
+      <span class="p">},</span>
+
+      <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
+        <span class="c1">// some lot's of events here</span>
+        <span class="s1">'...'</span><span class="o">:</span> <span class="s1">'...'</span>
+      <span class="p">},</span>
+
+      <span class="c1">// some lots of functions to support event-functions here</span>
+
+      <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// getTemplateData is injected into Backbone.View</span>
+        <span class="c1">// because a decorator is assigned.</span>
+        <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getTemplateData</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">template</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+      <span class="p">}</span>
+
+    <span class="p">});</span>
+
+</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/angelomichel">angelomichel</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
