@@ -1,0 +1,9 @@
+{
+  "name"          : "backbone-decorator",
+  "version"       : "0.1",
+  "main"          : "Backbone Decorator",
+  "dependencies"  : {
+    "backbone"    : ">=1.1.2"
+  },
+  "ignore"        : ["*-min.js", "docs", "test", "*.yml", "*.md"]
+}
