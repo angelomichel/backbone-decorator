@@ -68,7 +68,7 @@
   });
 
   test("normal Backbone.Views should not be affected if no decorator supplied", 2, function() {
-    view = new Backbone.View({ model: new Backbone.Model({ some: 'thing' }) });
+    var view = new Backbone.View({ model: new Backbone.Model({ some: 'thing' }) });
     equal(view.decoratorInstance, undefined, "should not have a decoratorInstance");
     equal(view.getTemplateData, undefined, "should not have a getTemplateData function");
   });
