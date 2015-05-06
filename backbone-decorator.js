@@ -21,6 +21,10 @@
   }
 }(this, function(root, _, Backbone) {
 
+  // Cache Backbone.View as we will be overriding it later
+  
+  var View = Backbone.View;
+
   // Backbone.Decorator
   // ------------------
 
@@ -61,15 +65,16 @@
   // automatically try to launch an instance when the View is start too.
   // The decorator tries to assign getTemplateData to your Backbone.View (only
   // when it doesn't already exists). ;
-  var ExtendedView = Backbone.View.extend({
+  var ExtendedView = View.extend({
     constructor: function(attributes) {
-      var attrs = attributes || {};
-      if (attrs.decorator) {
-        this.decoratorInstance = new attrs.decorator({ view: this });
+      var decorator = (attributes || {}).decorator || this.decorator;
+      if (decorator) {
+        this.decoratorInstance = new decorator({ view: this });
         this.getTemplateData = function() {
           return this.decoratorInstance.getTemplateData();
         };
       }
+      View.apply(this, arguments);
     }
   });
   Backbone.View = ExtendedView;
