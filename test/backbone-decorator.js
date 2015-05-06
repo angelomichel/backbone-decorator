@@ -3,7 +3,7 @@
   var products;
 
   // for view instance
-  var view;
+  var viewExtend, viewInitialize;
 
   // example decorator which would enrich the View with numberOfProducts
   var productsDecorator = Backbone.Decorator.extend({
@@ -16,9 +16,7 @@
   });
 
   // example view
-  var ProductsView;
-
-
+  var ProductsViewExtend, ProductsViewInitialize;
 
   module("Backbone.Decorator", {
 
@@ -28,33 +26,49 @@
         priceInCents: 99900
       }]);
 
-      ProductsView = Backbone.View.extend({
+      ProductsViewExtend = Backbone.View.extend({
         collection: products,
         decorator: productsDecorator
       });
 
-      view = new ProductsView({
+      ProductsViewInitialize = Backbone.View.extend({
+        collection: products
+      });
+
+      viewExtend = new ProductsViewExtend({
+        collection: products
+      });
+
+      viewInitialize = new ProductsViewInitialize({
         collection: products,
         decorator: productsDecorator
       });
+
     }
 
   });
 
 
-  test("get access to decoratorInstance", 1, function() {
-    notEqual(view.decoratorInstance, undefined, "should automatically contain decoratorInstance on view");
+  test("get access to decoratorInstance", 2, function() {
+    notEqual(viewExtend.decoratorInstance, undefined, "should automatically contain decoratorInstance on view");
+    notEqual(viewInitialize.decoratorInstance, undefined, "should automatically contain decoratorInstance on view");
   });
 
-  test("get a value of getTemplateData", 2, function() {
-    equal(typeof view.getTemplateData, "function", "should automatically contain getTemplateData function");
+  test("get a value of getTemplateData", 4, function() {
+    equal(typeof viewExtend.getTemplateData, "function", "should automatically contain getTemplateData function");
+    equal(typeof viewInitialize.getTemplateData, "function", "should automatically contain getTemplateData function");
 
-    var viewTemplateData = view.getTemplateData();
-    equal(viewTemplateData.numberOfProducts, view.collection.size(), "should in this example contain the size of the collection");
+    var viewTemplateData;
+
+    viewTemplateData = viewExtend.getTemplateData();
+    equal(viewTemplateData.numberOfProducts, viewExtend.collection.size(), "should in this example contain the size of the collection");
+
+    viewTemplateData = viewInitialize.getTemplateData();
+    equal(viewTemplateData.numberOfProducts, viewInitialize.collection.size(), "should in this example contain the size of the collection");
   });
 
   test("normal Backbone.Views should not be affected if no decorator supplied", 2, function() {
-    view = new Backbone.View({ model: new Backbone.Model({ some: 'thing' }) });
+    var view = new Backbone.View({ model: new Backbone.Model({ some: 'thing' }) });
     equal(view.decoratorInstance, undefined, "should not have a decoratorInstance");
     equal(view.getTemplateData, undefined, "should not have a getTemplateData function");
   });

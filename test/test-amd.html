@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Backbone-ViewState Test Suite</title>
+  <title>Backbone-Decorator Test Suite</title>
   <link rel="stylesheet" href="vendor/qunit.css" type="text/css" media="screen" />
   <script type="text/javascript" src="vendor/json2.js"></script>
   <script type="text/javascript" src="vendor/qunit.js"></script>
@@ -15,23 +15,15 @@
       paths: {
         'jquery': 'vendor/jquery',
         'underscore': 'vendor/underscore',
-        'backbone': '../backbone'
+        'backbone': 'vendor/backbone',
+        'backbone-decorator': '../backbone-decorator'
       }
     });
 
     var root = this;
 
-    require(['backbone', 'backbone-viewstate'], function(Backbone) {
-      require([
-        'environment',
-        'noconflict',
-        'events',
-        'model',
-        'collection',
-        'router',
-        'view',
-        'sync'
-      ], function() {
+    require(['backbone', 'backbone-decorator'], function(Backbone) {
+      require(['./backbone-decorator.js'], function() {
         QUnit.start();
       });
     });
