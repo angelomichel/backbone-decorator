@@ -34,8 +34,7 @@
       });
 
       view = new ProductsView({
-        collection: products,
-        decorator: productsDecorator
+        collection: products
       });
     }
 
